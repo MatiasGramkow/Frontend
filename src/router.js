@@ -26,7 +26,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () => { return import ('./views/Companies.vue')}
+            component: () => { return import ('./views/Companies.vue') }
         },
         {
             path: '/roles',
@@ -34,15 +34,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () => { return import ('./views/Roles.vue')}
-        },
-        {
-            path: '/test',
-            name: 'test',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => { return import ('./views/Test.vue')}
+            component: () => { return import ('./views/Roles.vue') }
         }
     ]
 })

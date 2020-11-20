@@ -15,7 +15,6 @@
 import ResponsiveNavigation from '@/components/ResponsiveNavigation'
 import Users from '@/views/Users'
 
-
 export default {
   components: {
     ResponsiveNavigation,
@@ -41,11 +40,6 @@ export default {
       {
         text: 'Roles',
 		path: '/roles',
-		icon: 'ion-ios-person'
-      },
-            {
-        text: 'Test',
-		path: '/test',
 		icon: 'ion-ios-person'
       }
     ]
