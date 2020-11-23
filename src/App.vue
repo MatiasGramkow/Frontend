@@ -2,7 +2,7 @@
   <div id="app">
     <ResponsiveNavigation
 		:nav-links="navLinks"
-		:image-path="require('./assets/arka_logo.png')"
+		image-path="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png"
 		background="#fff"
 		link-color="#777"
 		hoverBackground="#ddd"
@@ -13,34 +13,37 @@
 
 <script>
 import ResponsiveNavigation from '@/components/ResponsiveNavigation'
-import Users from '@/views/Users'
 
 export default {
   components: {
-    ResponsiveNavigation,
-    Users
+    ResponsiveNavigation
   },
   data: () => ({
     navLinks: [
       {
-        text: 'Home',
-		path: '/',
-		icon: 'ion-ios-home'
+        text: 'Søg',
+        path: '/search',
+        icon: 'ion-ios-search'
       },
       {
-        text: 'Users',
-		path: '/users',
-		icon: 'ion-ios-people'
+        text: 'Kort',
+        path: '/map',
+        icon: 'ion-ios-navigate'
       },
       {
-        text: 'Companies',
-		path: '/companies',
-		icon: 'ion-ios-business'
+        text: 'Nærmeste',
+		    path: '/nearest',
+        icon: 'ion-ios-pin'
       },
       {
-        text: 'Roles',
-		path: '/roles',
-		icon: 'ion-ios-person'
+        text: 'Om os',
+        path: '/about',
+        icon: 'ion-ios-information-circle'
+      },
+            {
+        text: 'Tilmeld',
+        path: '/signup',
+        icon: 'ion-ios-person'
       }
     ]
   })

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Search from './views/Search.vue'
 
 Vue.use(Router)
 
@@ -9,32 +9,33 @@ export default new Router({
     base: process.env.BASE_URL,
     routes: [{
             path: '/',
-            name: 'home',
-            component: Home
+            name: 'Search',
+            component: Search
         },
         {
-            path: '/users',
-            name: 'users',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => { return import ('./views/Users.vue') }
+            path: '/search',
+            name: 'search',
+            component: () => { return import ('./views/Search.vue') }
         },
         {
-            path: '/companies',
-            name: 'companies',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => { return import ('./views/Companies.vue') }
+            path: '/map',
+            name: 'map',
+            component: () => { return import ('./views/Map.vue') }
         },
         {
-            path: '/roles',
-            name: 'roles',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => { return import ('./views/Roles.vue') }
+            path: '/nearest',
+            name: 'nearest',
+            component: () => { return import ('./views/Nearest.vue') }
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: () => { return import ('./views/About.vue') }
+        },
+        {
+            path: '/signup',
+            name: 'signup',
+            component: () => { return import ('./views/Signup.vue') }
         }
     ]
 })
