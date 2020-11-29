@@ -1,111 +1,131 @@
 <template>
-	<nav :style="{ background: background || '#333' }">
-		<ul :style="{ background: background || '#333' }" ref="nav">
-			<figure class="image-logo" @click="toggleNav">
-				<img :src="imagePath" height="30px" width="40px" />
-			</figure>
-			<li
-				v-for="(link, index) in navLinks"
-				:key="index"
-				@mouseenter="$event.currentTarget.style.background = hoverBackground || '#999'"
-				@mouseleave="$event.currentTarget.style.background = background || '#333'"
-			>
-				<router-link
-					:to="link.path"
-					:style="{ color: linkColor || '#DDD' }"
-				>
-					{{ link.text }}
-					<i :class="link.icon" />
-				</router-link>
-			</li>
-		</ul>
-	</nav>
+  <v-card class="overflow-hidden">
+    <v-app-bar
+      absolute
+      color="#6A76AB"
+      dark
+      shrink-on-scroll
+      prominent
+      src="https://picsum.photos/1920/1080?random"
+      fade-img-on-scroll
+      scroll-target="#scrolling-techniques-4"
+    >
+      <template v-slot:img="{ props }">
+        <v-img
+          v-bind="props"
+          gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
+        ></v-img>
+      </template>
+
+      <v-app-bar-nav-icon v-if="this.mobileSize" @click="drawer = true"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Finance Accounting</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            color="yellow"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+
+      <template v-if="!this.mobileSize" v-slot:extension>
+        <v-tabs align-with-title>
+          <v-tab v-for="(link, index) in navLinks"
+		  	:key="index"
+			:to="link.path">
+			{{ link.text}}
+		</v-tab>
+        </v-tabs>
+      </template>
+    </v-app-bar>
+	<v-navigation-drawer
+      v-model="drawer"
+      absolute
+      temporary
+    >
+      <v-list
+        nav
+        dense
+      >
+        <v-list-item-group
+          v-model="group"
+          active-class="deep-blue--text text--accent-4"
+        >
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item v-for="(link, index) in navLinks"
+		  	:key="index"
+			:to="link.path">
+            <v-list-item-icon>
+              <v-icon>{{ link.icon}}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>{{ link.text }}</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+    <v-sheet
+      id="scrolling-techniques-4"
+      class="overflow-y-auto"
+      max-height="700"
+    >
+      <v-container class="containerStyled" >
+		  <div class="content" ref="content">
+    		<router-view></router-view>
+		  </div>
+	  </v-container>
+    </v-sheet>
+  </v-card>
 </template>
 
 <script>
-export default {
+  export default {
 	props: ['navLinks', 'background', 'linkColor', 'hoverBackground', 'imagePath'],
+    data () {
+		return {
+			drawer: false,
+			group: null,
+			windowWidth: window.innerWidth,
+			mobileSize: null
+		}
+	},
 	methods: {
-		toggleNav () {
-			const nav = this.$refs.nav.classList
-			nav.contains('active') ? nav.remove('active') : nav.add('active')
+
+	},
+	mounted () {
+		window.innerWidth <= 1000 ? this.mobileSize = true : this.mobileSize = false
+
+		window.onresize = () => {
+			this.windowWidth = window.innerWidth
+			this.windowWidth <= 1000 ? this.mobileSize = true : this.mobileSize = false
 		}
 	}
-}
+  }
 </script>
 
-<style scoped lang="scss">
-nav {
-	height: 60px;
-	width: 100%;
-	box-shadow: 2px 2px 2px #CCC;
-	ul {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		margin-block-start: 0;
-		margin-block-end: 0;
-		padding-inline-start: 0;
-		box-shadow: 2px 2px 2px #CCC;
+<style lang="scss">
 
-		figure {
-			cursor: pointer;
-			margin-right: 10px;
-		}
+.containerStyled {
+	min-height: 600px;
+	margin-top: 230px;
+}
 
-		a {
-			text-decoration: none;
-			display: flex;
-			flex-direction: row-reverse;
-			align-items: center;
-		}
-
-		i {
-			margin-right: 10px;
-			font-size: 22px;
-		}
-
-		li {
-			list-style-type: none;
-			padding: 10px 20px;
-		}
+@media (max-width: 1000px) {
+	.containerStyled {
+		min-height: 750px;
+		margin-top: 130px;
 	}
 }
 
-@media screen and (max-width: 759px) {
-	nav {
-		ul {
-			position: absolute;
-			width: 300px;
-			flex-direction: column;
-			left: -240px;
-			transition: 300ms ease all;
-			top: 60px;
-
-			&.active {
-				left: 0px;
-			}
-
-			figure {
-				position: fixed;
-				z-index: 1;
-				top: 10px;
-				left: 2px;
-			}
-
-			li {
-				width: 100%;
-				padding-left: 0;
-				padding-right: 0;
-			}
-
-			a {
-				flex-direction: row;
-				margin-left: 20px;
-				justify-content: space-between;
-				margin-right: 13px;
-			}
-		}
-	}
-}
 </style>

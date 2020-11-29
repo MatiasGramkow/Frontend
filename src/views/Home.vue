@@ -1,5 +1,13 @@
 <template>
-  <div class="home">
-    <h1 class="arka_heading">Home Page</h1>
-  </div>
+<div>INPUT</div>
 </template>
+
+<script>
+
+  export default {
+    name: 'Home',
+
+    components: {
+    }
+  }
+</script>

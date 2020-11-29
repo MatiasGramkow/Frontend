@@ -1,42 +1,10 @@
 <template>
-  <div class="roles">
-    <h1 class="arka_heading">Roles</h1>
-    <v-card class="arka_card" style="width: 50%;" elevation="20" shaped>
-      <table class="styled-table table_shadow" >
-        <thead>
-          <tr>
-            <th>Navn</th>
-            <th>Id</th>
-            <th class="arka_settings">Indstillinger</th>
-          </tr>
-        </thead>
-        <tbody v-for="role in roles" :key="role.id">
-          <tr>
-            <td> {{ role.name }}</td>
-            <td> {{ role.id }}</td>
-            <td class="arka_settings">
-              <span>Opdater</span>
-              <span>|</span>
-              <span>Slet</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </v-card>
-  </div>
+
 </template>
 
 <script>
-import Vue from 'vue'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
-
-Vue.use(VueAxios, axios)
-Vue.use(Vuetify)
 export default {
-name: 'Companies',
+name: 'Roles',
 data () {
   return {
       editIndex: null,
@@ -73,5 +41,4 @@ mounted () {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/arka_table.scss";
 </style>

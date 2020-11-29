@@ -1,82 +1,66 @@
 <template>
-  <div id="app">
+  <v-app>
     <ResponsiveNavigation
-		:nav-links="navLinks"
-		:image-path="require('./assets/arka_logo.png')"
-		background="#fff"
-		link-color="#777"
-		hoverBackground="#ddd"
-    />
-    <router-view/>
-  </div>
+        :nav-links="navLinks"
+        image-path="https://i.imgur.com/kB90ZxK.png"
+        background="#fff"
+        link-color="#777"
+        hoverBackground="#ddd"
+        />
+    <Footer/>
+
+  </v-app>
 </template>
 
 <script>
-import ResponsiveNavigation from '@/components/ResponsiveNavigation'
-import Users from '@/views/Users'
+import ResponsiveNavigation from './components/ResponsiveNavigation.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   components: {
     ResponsiveNavigation,
-    Users
-  },
+    Footer
+    },
+  name: 'App',
+
   data: () => ({
     navLinks: [
       {
         text: 'Home',
-		path: '/',
-		icon: 'ion-ios-home'
+        path: '/home',
+        icon: 'ion-ios-home'
       },
       {
         text: 'Users',
-		path: '/users',
-		icon: 'ion-ios-people'
-      },
-      {
-        text: 'Companies',
-		path: '/companies',
-		icon: 'ion-ios-business'
+        path: '/users',
+        icon: 'ion-ios-people'
       },
       {
         text: 'Roles',
-		path: '/roles',
-		icon: 'ion-ios-person'
+        path: '/roles',
+        icon: 'ion-ios-cog'
+      },
+      {
+        text: 'Companies',
+		    path: '/companies',
+        icon: 'ion-ios-business'
+      },
+      {
+        text: 'Profile',
+        path: '/profile',
+        icon: 'ion-ios-man'
+      },
+            {
+        text: 'Logout',
+        path: '/logout',
+        icon: 'ion-ios-log-out'
       }
     ]
   })
 }
-
 </script>
 
 <style lang="scss">
 @import 'https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css';
 
-figure {
-	margin-block-start: 0;
-	margin-block-end: 0;
-	margin-inline-start: 10px;
-	margin-inline-end: 0;
-}
-
-body {
-  margin: 0;
-}
-
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
